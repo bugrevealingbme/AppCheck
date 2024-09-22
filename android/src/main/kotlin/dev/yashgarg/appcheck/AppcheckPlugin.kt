@@ -87,8 +87,18 @@ class AppcheckPlugin : FlutterPlugin, MethodCallHandler {
             info.applicationInfo.loadLabel(context.packageManager).toString()
         app["package_name"] = info.packageName
         app["version_name"] = info.versionName
+        app["icon"] =
+                if (withIcon) DrawableUtil.drawableToByteArray(info.applicationInfo.loadIcon(context.packageManager))
+                else ByteArray(0)
+        app["version_code"] = getVersionCode(info)
         app["system_app"] = (info.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
         return app
+    }
+
+    @Suppress("DEPRECATION")
+    private fun getVersionCode(packageInfo: PackageInfo): Long {
+        return if (SDK_INT < P) packageInfo.versionCode.toLong()
+        else packageInfo.longVersionCode
     }
 
     private fun isAppEnabled(packageName: String, result: Result) {
