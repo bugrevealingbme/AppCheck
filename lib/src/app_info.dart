@@ -17,7 +17,7 @@ class AppInfo {
   final String? appName;
   final String? versionName;
   final bool? isSystemApp;
-  final int versionCode;
+  final int? versionCode;
   final Uint8List? icon;
   
   AppInfo({
