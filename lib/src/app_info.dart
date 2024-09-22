@@ -35,7 +35,7 @@ class AppInfo {
       packageName: map["package_name"],
       versionName: map["version_name"],
       isSystemApp: map["system_app"],
-      versionCode: map["versionCode"],
+      versionCode: map["version_code"],
       icon: map["icon"],
     );
   }
