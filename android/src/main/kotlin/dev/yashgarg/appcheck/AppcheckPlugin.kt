@@ -90,8 +90,7 @@ class AppcheckPlugin : FlutterPlugin, MethodCallHandler {
         app["package_name"] = info.packageName
         app["version_name"] = info.versionName
         app["icon"] = DrawableUtil.drawableToByteArray(info.applicationInfo.loadIcon(context.packageManager))
-        val packageInfo = context.packageManager.getPackageInfo(info.packageName, 0)
-        app["version_code"] = getVersionCode(packageInfo)
+        app["version_code"] = getVersionCode(info)
         app["system_app"] = (info.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
         return app
     }
